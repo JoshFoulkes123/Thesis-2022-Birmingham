@@ -1,0 +1,315 @@
+<robot name="my_robot">
+
+	<!-- * * * Link Definitions * * * -->
+	<link name="ground">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="1 1 0.001"/>
+			</geometry>
+			<material name="Green">
+	       		<color rgba="0 1 0 1.0"/>
+	     	</material>
+		</visual>
+	</link>
+
+ 	<link name="base_link">
+		<visual>
+		    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.1 0.05"/>
+			</geometry>
+			<material name="Cyan1">
+	       		<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+		</visual>
+	</link>
+
+	<link name="hip_fixed">
+		<visual>
+		    <origin xyz="0 0 0.265" rpy="1.5707963 0 0"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0.265" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.06 0.06 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.05 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="5386398597120" ixy="169352544256" ixz="-351662374912" iyy="3678570807296" iyz="47239176192" izz="4580952244224"/>
+		</inertial>
+	</link>
+
+	<link name="hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.005 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.025"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+<!--			<material name="Cyan2">-->
+<!--	       		<color rgba="0 0.7 0.7 1.0"/>-->
+<!--	     	</material>-->
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.01 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.07" radius="0.025"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.05 0.03 0.02"/>
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+	<link name="foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</visual>
+		<collision>
+		    <origin xyz="0.01 0 0" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.02" radius="0.015"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<material name="Cyan2">
+	       		<color rgba="0 0.7 0.7 1.0"/>
+	     	</material>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+<!--			kg-->
+		    <inertia ixx="42607620" ixy="-4088140" ixz="-30097.001953" iyy="26167242" iyz="44556.851562" izz="52202032"/>
+		</inertial>
+	</link>
+
+
+
+
+	<!-- * * * Joint Definitions * * * -->
+
+	<joint name="ground_base" type="fixed">
+    	<parent link="ground"/>
+    	<child link="base_link"/>
+    	<origin xyz="0 0 0" rpy="0 0 0"/>
+
+	</joint>
+
+	<joint name="base_hip1" type="fixed">
+    	<parent link="base_link"/>
+    	<child link="hip_fixed"/>
+    	<origin xyz="0 0 0" rpy="0 0 0"/>
+
+	</joint>
+
+	<joint name="hip1_hip2" type="revolute">
+    	<parent link="hip_fixed"/>
+    	<child link="hip"/>
+    	<origin xyz="0.016 0 0.265" rpy="0 0 0"/>
+		<axis xyz="0 0 1"/>
+		<limit lower="-1.3962634" upper="1.3962634" effort="10" velocity="3"/>
+	</joint>
+
+	<joint name="hip2_hipjoint" type="revolute">
+    	<parent link="hip"/>
+    	<child link="hip_joint"/>
+    	<origin xyz="0.053 0 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.872664626" effort="10" velocity="3"/>
+	</joint>
+
+	<joint name="hip_femur" type="fixed">
+    	<parent link="hip_joint"/>
+    	<child link="femur"/>
+    	<origin xyz="0.067 0.005 0" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="femur_uknee" type="fixed">
+    	<parent link="femur"/>
+    	<child link="uknee"/>
+    	<origin xyz="0.050 0 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+	<joint name="uknee_lknee" type="revolute">
+    	<parent link="uknee"/>
+    	<child link="lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="10" velocity="3"/>
+	</joint>
+
+	<joint name="lknee_tibia" type="fixed">
+    	<parent link="lknee"/>
+    	<child link="tibia"/>
+    	<origin xyz="0.087 -0.012 0" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="tibia_ankle" type="fixed">
+    	<parent link="tibia"/>
+    	<child link="ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="ankle_foot" type="fixed">
+    	<parent link="ankle"/>
+    	<child link="foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+
+</robot>
