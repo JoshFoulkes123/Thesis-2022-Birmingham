@@ -15,7 +15,7 @@ walk_height = -250
 
 inital_looking = 30
 
-set_pos = np.array([[100,-100,walk_height],
+set_pos = np.array([[200,-100,walk_height],
                     [100,-200,walk_height],
                     [-100,-200,walk_height],
                     [-200,-100,walk_height],
@@ -156,7 +156,7 @@ def define_start_stop_coordsV3(want_stop,distance,angle,leg_index):
     
     
     #graph section =======================================================
-    plt.plot(0,0,marker="x", markersize=20, markerfacecolor="black", markeredgecolor = "black")
+    plt.plot(0,0,marker="x", markersize=20, markerfacecolor="red", markeredgecolor = "red")
     m= 0
     for n in edge_dict:
         point_start = np.array([math.sin(-(n[0]*(math.pi/180)-(math.pi/2)))*100,math.cos(-(n[0]*(math.pi/180)-(math.pi/2)))*100])
@@ -169,21 +169,14 @@ def define_start_stop_coordsV3(want_stop,distance,angle,leg_index):
     m= 0
      
     for n in leg_Positions:
-        print(n)
-        if m == 0:
+        if m == leg_index:
             plt.plot((point_mid[0]+leg_Positions[m,0],leg_Positions[m,0]),(point_mid[1]+leg_Positions[m,1],leg_Positions[m,1]),'b-',lw=2)
             plt.plot(n[0],n[1],marker=".", markersize=20, markerfacecolor="blue", markeredgecolor = "blue")
         else:
             plt.plot(n[0],n[1],marker=".", markersize=20, markerfacecolor="black", markeredgecolor = "black")
         m = m+1
-       
-    plt.arrow(0,0,100,0,width = 7,length_includes_head = True,color= "red") 
-    plt.arrow(0,0,0,100,width = 7,length_includes_head = True, color = "green") 
-  
+        
     plt.plot(initial_point[0],initial_point[1],marker=".", markersize=10, markerfacecolor="red", markeredgecolor = "red")
-    
-    
-    plt.plot(set_pos[0,0],set_pos[0,1],marker=".", markersize=10, markerfacecolor="red", markeredgecolor = "green")
     
     try:
         plt.plot(start_coord[0],start_coord[1],marker="o", markersize=7, markerfacecolor="none", markeredgecolor = "red")
@@ -198,7 +191,6 @@ def define_start_stop_coordsV3(want_stop,distance,angle,leg_index):
         plt.arrow(initial_point[0],initial_point[1],end_point[0]-initial_point[0],end_point[1]-initial_point[1],width = 5,length_includes_head = True)
         plt.plot(end_point[0],end_point[1],marker="+", markersize=20, markerfacecolor="black", markeredgecolor = "black")        
         
-    plt.show()  
     
     print(end_point,initial_point)
     print(flipped)

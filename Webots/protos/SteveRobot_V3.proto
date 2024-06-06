@@ -1,0 +1,3409 @@
+#VRML_SIM R2022a utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the SteveRobot
+# Extracted from: /home/josh/catkin_ws/src/steve/steve_description/urdf/steve_robot_no_macro.urdf
+
+PROTO SteveRobot_V3 [
+  field  SFVec3f     translation     0 1 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "SteveRobot_V3"  # Is `Robot.name`.
+  field  SFString    controller      "void"        # Is `Robot.controller`.
+  field  MFString    controllerArgs  []            # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""            # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE         # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE          # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE         # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+		Solid {
+		  translation 0 0 0
+		  rotation 0 0 1 1.5707
+		  children [
+			Shape {
+			  appearance PBRAppearance {
+				baseColor 0.5 0.5 0.5
+				roughness 1
+				metalness 0
+			  }
+			  geometry DEF base Mesh {
+				url [
+				  "urdf_meshes/base.stl"
+				]
+			  }
+			}
+		  ]
+		  name "base"
+		  boundingObject Transform {
+		    translation 0 0 0
+		    rotation 0 0 1 0
+		    children [
+			  Mesh {
+				url [
+			      "urdf_meshes/base.stl"
+				]
+			  }
+			]
+		  }
+		  physics Physics {
+			density -1
+			mass 0.5
+			centerOfMass [
+			  0 0 0
+			]
+		  }
+		}
+		Solid {
+		  translation 0 0 0.06
+		  children [
+			Shape {
+			  appearance PBRAppearance {
+				baseColor 0.5 0.5 0.5
+				roughness 1
+				metalness 0
+			  }
+			  geometry Box {
+				size 0.1 0.1 0.1
+			  }
+			}
+		  ]
+		  name "others"
+		  boundingObject Box {
+			size 0.1 0.1 0.1
+		  }
+		  physics Physics {
+			density -1
+			mass 0.5
+			centerOfMass [
+			  0 0 0
+			]
+		  }
+		}
+		Solid {
+		  translation -0.115 -0.07 0.042
+		  rotation 0 0 -1 2.26893
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry DEF hip_joint_inner Mesh {
+					url [
+					  "urdf_meshes/hip_joint_inner.stl"
+					]
+				  }
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.070701930129124e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg1R_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg1R_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry DEF hip_joint_outer Mesh {
+						  url [
+							"urdf_meshes/hip_joint_outer.stl"
+						  ]
+						}
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721719127
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg1R_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg1R_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721719129
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry DEF hip_servo_side Mesh {
+								url [
+								  "urdf_meshes/hip_servo_side.stl"
+								]
+							  }
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry DEF leg_piece_sleeve_50 Mesh {
+									url [
+									  "urdf_meshes/leg_piece_sleeve_50.stl"
+									]
+								  }
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry DEF servo_holder_knee Mesh {
+										url [
+										  "urdf_meshes/servo_holder_knee.stl"
+										]
+									  }
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274466225
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg1R_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg1R_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 1 0 0.8000000274466216
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry DEF leg_piece_lower Mesh {
+												  url [
+													"urdf_meshes/leg_piece_lower.stl"
+												  ]
+												}
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry DEF new_foot Mesh {
+													  url [
+														"urdf_meshes/new_foot.stl"
+													  ]
+													}
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry DEF FOOT_PART2 Mesh {
+														  url [
+															"urdf_meshes/FOOT_PART2.stl"
+														  ]
+														}
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg1R"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg1R_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg1R_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg1R_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg1R_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg1R_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg1R_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg1R_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg1R_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg1R_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation -0.14 -0.055 0.042
+		  rotation 0 0 -1 2.79253
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.0707015645476616e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg2R_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg2R_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721755771
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg2R_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg2R_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.799999672175577
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274482348
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg2R_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg2R_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 0.9999999999999999 0 0.8000000274482346
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg2R"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg2R_foot"
+												boundingObject DEF Foot_cotact_box Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg2R_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg2R_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg2R_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg2R_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg2R_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg2R_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg2R_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg2R_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation 0.055 -0.14 0.042
+		  rotation 0 0 1 2.79253
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position 2.0706858415725438e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg3R_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg3R_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721724082
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg3R_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg3R_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721724084
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274460233
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg3R_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg3R_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 0.9999999999999999 0 0.8000000274460234
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg3R"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg3R_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg3R_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg3R_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg3R_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg3R_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg3R_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg3R_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg3R_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg3R_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation -0.07 0.115 0.042
+		  rotation 0 0 1 2.26893
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.0707020253388138e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg4R_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg4R_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -0.9999999999999999 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721776059
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg4R_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg4R_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721776058
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274506106
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg4R_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg4R_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 1 0 0.8000000274506106
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg4R"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg4R_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg4R_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg4R_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg4R_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg4R_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg4R_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg4R_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg4R_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg4R_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation 0.07 -0.115 0.042
+		  rotation 0 0 -1 0.872665
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.0707033814564236e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg1L_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg1L_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.799999672177399
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg1L_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg1L_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721773988
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274506236
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg1L_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg1L_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 1 0 0.8000000274506238
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												]
+												name "leg1L_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											  TouchSensor {
+												name "touch_sensor_leg1L"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+											  }
+											]
+											name "leg1L_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg1L_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg1L_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg1L_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg1L_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg1L_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg1L_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg1L_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation 0.14 -0.055 0.042
+		  rotation 0 0 -1 0.349066
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position 2.0706881636194608e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg2L_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg2L_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.79999967217205
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg2L_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg2L_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721720498
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.800000027446046
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg2L_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg2L_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 1 0 0.8000000274460463
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												]
+												name "leg2L_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											  TouchSensor {
+												name "touch_sensor_leg2L"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+											  }
+											]
+											name "leg2L_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg2L_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg2L_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg2L_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg2L_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg2L_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg2L_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg2L_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation 0.14 0.055 0.042
+		  rotation 0 0 1 0.349066
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.070703920636116e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg3L_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg3L_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -1 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721752131
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg3L_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg3L_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721752132
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274482588
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg3L_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg3L_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 0.9999999999999999 0 0.8000000274482586
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg3L"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg3L_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg3L_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg3L_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg3L_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg3L_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg3L_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg3L_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg3L_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg3L_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+		Solid {
+		  translation 0.07 0.115 0.042
+		  rotation 0 0 1 0.872665
+		  children [
+			Transform {
+			  rotation 1 0 0 1.570796
+			  children [
+				Shape {
+				  appearance PBRAppearance {
+					baseColor 0.5 0.5 0.5
+					roughness 1
+					metalness 0
+				  }
+				  geometry USE hip_joint_inner
+				}
+			  ]
+			}
+			HingeJoint {
+			  jointParameters HingeJointParameters {
+				position -2.070703353184986e-07
+				axis 0 0 1
+				anchor 0.016 0 0
+			  }
+			  device [
+				RotationalMotor {
+				  name "leg4L_base_link_fixed_hip2"
+				  maxVelocity 6.9
+				  minPosition -1.3962634
+				  maxPosition 1.3962634
+				  maxTorque 3.9
+				}
+				PositionSensor {
+				  name "leg4L_base_link_fixed_hip2_sensor"
+				}
+			  ]
+			  endPoint Solid {
+				translation 0.016 0 0
+				rotation 0 0 -0.9999999999999999 2.0647654623614288e-07
+				children [
+				  Transform {
+					translation 0.029 -0.0085 0.008
+					rotation -0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+					children [
+					  Shape {
+						appearance PBRAppearance {
+						  baseColor 0.5 0.5 0.5
+						  roughness 1
+						  metalness 0
+						}
+						geometry USE hip_joint_outer
+					  }
+					]
+				  }
+				  HingeJoint {
+					jointParameters HingeJointParameters {
+					  position 0.7999996721716933
+					  axis 0 1 0
+					  anchor 0.053 -0.002 0.009
+					}
+					device [
+					  RotationalMotor {
+						name "leg4L_hip2_hipjoint"
+						maxVelocity 6.9
+						minPosition -1.74532925
+						maxPosition 0.8
+						maxTorque 3.9
+					  }
+					  PositionSensor {
+						name "leg4L_hip2_hipjoint_sensor"
+					  }
+					]
+					endPoint Solid {
+					  translation 0.053 -0.002 0.009
+					  rotation 0 1 0 0.7999996721716934
+					  children [
+						Transform {
+						  translation 0.01448 0 0
+						  rotation -0.0021880004652641265 0.9999952126425046 -0.0021880004652641265 3.141583
+						  children [
+							Shape {
+							  appearance PBRAppearance {
+								baseColor 0.5 0.5 0.5
+								roughness 1
+								metalness 0
+							  }
+							  geometry USE hip_servo_side
+							}
+						  ]
+						}
+						Solid {
+						  translation 0.066 0.0065 0
+						  children [
+							Transform {
+							  translation -0.003 0 0
+							  children [
+								Shape {
+								  appearance PBRAppearance {
+									baseColor 0.5 0.5 0.5
+									roughness 1
+									metalness 0
+								  }
+								  geometry USE leg_piece_sleeve_50
+								}
+							  ]
+							}
+							Solid {
+							  translation 0.049 -0.001 0.005
+							  children [
+								Transform {
+								  translation -0.005 -0.0005 0
+								  rotation -0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.094395
+								  children [
+									Shape {
+									  appearance PBRAppearance {
+										baseColor 0.5 0.5 0.5
+										roughness 1
+										metalness 0
+									  }
+									  geometry USE servo_holder_knee
+									}
+								  ]
+								}
+								HingeJoint {
+								  jointParameters HingeJointParameters {
+									position 0.8000000274466361
+									axis 0 1 0
+									anchor 0.01 0 0
+								  }
+								  device [
+									RotationalMotor {
+									  name "leg4L_uknee_lknee"
+									  maxVelocity 6.9
+									  minPosition -1.22173048
+									  maxPosition 1.74532925
+									  maxTorque 3.9
+									}
+									PositionSensor {
+									  name "leg4L_uknee_lknee_sensor"
+									}
+								  ]
+								  endPoint Solid {
+									translation 0.01 0 0
+									rotation 0 1 0 0.8000000274466365
+									children [
+									  Transform {
+										translation 0.014 -0.005 0
+										rotation -0.0021880004652641265 -0.0021880004652641265 -0.9999952126425046 3.141583
+										children [
+										  Shape {
+											appearance PBRAppearance {
+											  baseColor 0.5 0.5 0.5
+											  roughness 1
+											  metalness 0
+											}
+											geometry USE hip_servo_side
+										  }
+										]
+									  }
+									  Solid {
+										translation 0.087 0 0
+										children [
+										  Transform {
+											rotation 0 0 -1 1.570796
+											children [
+											  Shape {
+												appearance PBRAppearance {
+												  baseColor 0.5 0.5 0.5
+												  roughness 1
+												  metalness 0
+												}
+												geometry USE leg_piece_lower
+											  }
+											]
+										  }
+										  Solid {
+											translation 0.0685 0 0
+											children [
+											  Transform {
+												rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.094395
+												children [
+												  Shape {
+													appearance PBRAppearance {
+													  baseColor 0.5 0.5 0.5
+													  roughness 1
+													  metalness 0
+													}
+													geometry USE new_foot
+												  }
+												]
+											  }
+											  Solid {
+												translation 0.015 0 0
+												children [
+												  Transform {
+													translation 0.0145 0 0
+													rotation 0 0 -1 1.570796
+													children [
+													  Shape {
+														appearance PBRAppearance {
+														  baseColor 0.5 0.5 0.5
+														  roughness 1
+														  metalness 0
+														}
+														geometry USE FOOT_PART2
+													  }
+													]
+												  }
+												  TouchSensor {
+													name "touch_sensor_leg4L"
+													boundingObject Transform {
+													  translation 0.0145 0 0
+													  rotation -1 0 0 1.570796
+													  children [
+														Cylinder {
+														  height 0.025
+														  radius 0.0155
+														}
+													  ]
+													}
+												  }
+												]
+												name "leg4L_foot"
+												boundingObject Transform {
+												  translation 0.0145 0 0
+												  rotation -1 0 0 1.570796
+												  children [
+													Cylinder {
+													  height 0.025
+													  radius 0.0155
+													}
+												  ]
+												}
+												physics Physics {
+												  density -1
+												  mass 0.02
+												  centerOfMass [
+													0 0 0
+												  ]
+												  inertiaMatrix [
+													2.945e-06 1.835e-06 2.345e-06
+													0 0 0
+												  ]
+												}
+											  }
+											]
+											name "leg4L_ankle"
+											boundingObject Transform {
+											  translation 0.006 0 0
+											  rotation -1 0 0 1.570796
+											  children [
+												Box {
+												  size 0.05 0.028 0.022
+												}
+											  ]
+											}
+											physics Physics {
+											  density -1
+											  mass 0.012
+											  centerOfMass [
+												0 0 0
+											  ]
+											  inertiaMatrix [
+												2.148e-06 1.296e-06 2.571e-06
+												-2.295e-08 -8.572e-10 -8.627e-09
+											  ]
+											}
+										  }
+										]
+										name "leg4L_tibia"
+										boundingObject Box {
+										  size 0.1 0.02 0.02
+										}
+										physics Physics {
+										  density -1
+										  mass 0.016
+										  centerOfMass [
+											0 0 0
+										  ]
+										  inertiaMatrix [
+											1.311e-05 7.066e-07 1.311e-05
+											2.532e-08 0 0
+										  ]
+										}
+									  }
+									]
+									name "leg4L_lknee"
+									boundingObject Transform {
+									  translation 0.013 0 0
+									  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+									  children [
+										Cylinder {
+										  height 0.08
+										  radius 0.03
+										}
+									  ]
+									}
+									physics Physics {
+									  density -1
+									  mass 0.025
+									  centerOfMass [
+										0 0 0
+									  ]
+									  inertiaMatrix [
+										1.501e-05 8.703e-06 2.178e-05
+										-5.971e-08 2.265e-10 1.128e-10
+									  ]
+									}
+								  }
+								}
+							  ]
+							  name "leg4L_uknee"
+							  boundingObject Box {
+								size 0.055 0.05 0.04
+							  }
+							  physics Physics {
+								density -1
+								mass 0.084
+								centerOfMass [
+								  0 0 0
+								]
+								inertiaMatrix [
+								  3.616e-05 1.935e-05 2.537e-05
+								  -1.948e-07 1.827e-07 2.456e-06
+								]
+							  }
+							}
+						  ]
+						  name "leg4L_femur"
+						  boundingObject Transform {
+							translation -0.003 0 0
+							children [
+							  Box {
+								size 0.05 0.02 0.02
+							  }
+							]
+						  }
+						  physics Physics {
+							density -1
+							mass 0.008
+							centerOfMass [
+							  0 0 0
+							]
+							inertiaMatrix [
+							  4.725e-07 1.902e-06 1.902e-06
+							  0 0 0
+							]
+						  }
+						}
+					  ]
+					  name "leg4L_hip_joint"
+					  boundingObject Transform {
+						translation 0.017 0.003 0
+						rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.094395
+						children [
+						  Cylinder {
+							height 0.08
+							radius 0.03
+						  }
+						]
+					  }
+					  physics Physics {
+						density -1
+						mass 0.025
+						centerOfMass [
+						  0 0 0
+						]
+						inertiaMatrix [
+						  1.501e-05 8.703e-06 2.178e-05
+						  -5.971e-08 2.265e-10 1.128e-10
+						]
+					  }
+					}
+				  }
+				]
+				name "leg4L_hip"
+				boundingObject Transform {
+				  translation 0.03 -0.007 0
+				  children [
+					Box {
+					  size 0.08 0.055 0.08
+					}
+				  ]
+				}
+				physics Physics {
+				  density -1
+				  mass 0.124
+				  centerOfMass [
+					0 0 0
+				  ]
+				}
+			  }
+			}
+		  ]
+		  name "leg4L_base_link"
+		  boundingObject Box {
+			size 0.06 0.06 0.08
+		  }
+		  physics Physics {
+			density -1
+			mass 0.115
+			centerOfMass [
+			  0 0 0
+			]
+			inertiaMatrix [
+			  7.183e-05 3.775e-05 8.613e-05
+			  -8.663e-06 -5.347e-08 1.961e-08
+			]
+		  }
+		}
+    ]
+    name IS name
+    
+    physics Physics {
+      density -1
+      mass 0.500000
+      centerOfMass [ 0.000000 0.000000 0.000000 ]
+      inertiaMatrix [
+        3.000000e-03 4.000000e-03 7.000000e-03
+        -1.570000e-07 3.039000e-08 1.404000e-08
+      ]
+    }
+  }
+}

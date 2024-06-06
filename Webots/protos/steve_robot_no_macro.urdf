@@ -1,0 +1,2934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="steve_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg1R_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg1R_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1R_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg1R_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg1R" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg1R"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1R_base_link_fixed_hip2" type="revolute">
+    <parent link="leg1R_base_link"/>
+    <child link="leg1R_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg1R_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1R_hip2_hipjoint" type="revolute">
+    	<parent link="leg1R_hip"/>
+    	<child link="leg1R_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg1R_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1R_hip_femur" type="fixed">
+    	<parent link="leg1R_hip_joint"/>
+    	<child link="leg1R_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1R_femur_uknee" type="fixed">
+    	<parent link="leg1R_femur"/>
+    	<child link="leg1R_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1R_uknee_lknee" type="revolute">
+    	<parent link="leg1R_uknee"/>
+    	<child link="leg1R_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg1R_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1R_lknee_tibia" type="fixed">
+    	<parent link="leg1R_lknee"/>
+    	<child link="leg1R_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1R_tibia_ankle" type="fixed">
+    	<parent link="leg1R_tibia"/>
+    	<child link="leg1R_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1R_ankle_foot" type="fixed">
+    	<parent link="leg1R_ankle"/>
+    	<child link="leg1R_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg2R_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg2R_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2R_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg2R_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg2R" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg2R"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2R_base_link_fixed_hip2" type="revolute">
+    <parent link="leg2R_base_link"/>
+    <child link="leg2R_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg2R_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2R_hip2_hipjoint" type="revolute">
+    	<parent link="leg2R_hip"/>
+    	<child link="leg2R_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg2R_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2R_hip_femur" type="fixed">
+    	<parent link="leg2R_hip_joint"/>
+    	<child link="leg2R_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2R_femur_uknee" type="fixed">
+    	<parent link="leg2R_femur"/>
+    	<child link="leg2R_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2R_uknee_lknee" type="revolute">
+    	<parent link="leg2R_uknee"/>
+    	<child link="leg2R_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg2R_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2R_lknee_tibia" type="fixed">
+    	<parent link="leg2R_lknee"/>
+    	<child link="leg2R_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2R_tibia_ankle" type="fixed">
+    	<parent link="leg2R_tibia"/>
+    	<child link="leg2R_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2R_ankle_foot" type="fixed">
+    	<parent link="leg2R_ankle"/>
+    	<child link="leg2R_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg3R_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg3R_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3R_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg3R_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg3R" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg3R"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3R_base_link_fixed_hip2" type="revolute">
+    <parent link="leg3R_base_link"/>
+    <child link="leg3R_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg3R_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3R_hip2_hipjoint" type="revolute">
+    	<parent link="leg3R_hip"/>
+    	<child link="leg3R_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg3R_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3R_hip_femur" type="fixed">
+    	<parent link="leg3R_hip_joint"/>
+    	<child link="leg3R_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3R_femur_uknee" type="fixed">
+    	<parent link="leg3R_femur"/>
+    	<child link="leg3R_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3R_uknee_lknee" type="revolute">
+    	<parent link="leg3R_uknee"/>
+    	<child link="leg3R_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg3R_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3R_lknee_tibia" type="fixed">
+    	<parent link="leg3R_lknee"/>
+    	<child link="leg3R_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3R_tibia_ankle" type="fixed">
+    	<parent link="leg3R_tibia"/>
+    	<child link="leg3R_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3R_ankle_foot" type="fixed">
+    	<parent link="leg3R_ankle"/>
+    	<child link="leg3R_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg4R_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg4R_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4R_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg4R_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg4R" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg4R"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4R_base_link_fixed_hip2" type="revolute">
+    <parent link="leg4R_base_link"/>
+    <child link="leg4R_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg4R_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4R_hip2_hipjoint" type="revolute">
+    	<parent link="leg4R_hip"/>
+    	<child link="leg4R_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg4R_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4R_hip_femur" type="fixed">
+    	<parent link="leg4R_hip_joint"/>
+    	<child link="leg4R_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4R_femur_uknee" type="fixed">
+    	<parent link="leg4R_femur"/>
+    	<child link="leg4R_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4R_uknee_lknee" type="revolute">
+    	<parent link="leg4R_uknee"/>
+    	<child link="leg4R_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg4R_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4R_lknee_tibia" type="fixed">
+    	<parent link="leg4R_lknee"/>
+    	<child link="leg4R_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4R_tibia_ankle" type="fixed">
+    	<parent link="leg4R_tibia"/>
+    	<child link="leg4R_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4R_ankle_foot" type="fixed">
+    	<parent link="leg4R_ankle"/>
+    	<child link="leg4R_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg1L_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg1L_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg1L_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg1L_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg1L" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg1L"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1L_base_link_fixed_hip2" type="revolute">
+    <parent link="leg1L_base_link"/>
+    <child link="leg1L_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg1L_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1L_hip2_hipjoint" type="revolute">
+    	<parent link="leg1L_hip"/>
+    	<child link="leg1L_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg1L_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1L_hip_femur" type="fixed">
+    	<parent link="leg1L_hip_joint"/>
+    	<child link="leg1L_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1L_femur_uknee" type="fixed">
+    	<parent link="leg1L_femur"/>
+    	<child link="leg1L_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1L_uknee_lknee" type="revolute">
+    	<parent link="leg1L_uknee"/>
+    	<child link="leg1L_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg1L_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg1L_lknee_tibia" type="fixed">
+    	<parent link="leg1L_lknee"/>
+    	<child link="leg1L_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1L_tibia_ankle" type="fixed">
+    	<parent link="leg1L_tibia"/>
+    	<child link="leg1L_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg1L_ankle_foot" type="fixed">
+    	<parent link="leg1L_ankle"/>
+    	<child link="leg1L_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg2L_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg2L_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg2L_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg2L_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg2L" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg2L"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2L_base_link_fixed_hip2" type="revolute">
+    <parent link="leg2L_base_link"/>
+    <child link="leg2L_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg2L_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2L_hip2_hipjoint" type="revolute">
+    	<parent link="leg2L_hip"/>
+    	<child link="leg2L_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg2L_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2L_hip_femur" type="fixed">
+    	<parent link="leg2L_hip_joint"/>
+    	<child link="leg2L_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2L_femur_uknee" type="fixed">
+    	<parent link="leg2L_femur"/>
+    	<child link="leg2L_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2L_uknee_lknee" type="revolute">
+    	<parent link="leg2L_uknee"/>
+    	<child link="leg2L_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg2L_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg2L_lknee_tibia" type="fixed">
+    	<parent link="leg2L_lknee"/>
+    	<child link="leg2L_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2L_tibia_ankle" type="fixed">
+    	<parent link="leg2L_tibia"/>
+    	<child link="leg2L_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg2L_ankle_foot" type="fixed">
+    	<parent link="leg2L_ankle"/>
+    	<child link="leg2L_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+  <link name="leg3L_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg3L_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg3L_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg3L_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg3L" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg3L"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3L_base_link_fixed_hip2" type="revolute">
+    <parent link="leg3L_base_link"/>
+    <child link="leg3L_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg3L_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3L_hip2_hipjoint" type="revolute">
+    	<parent link="leg3L_hip"/>
+    	<child link="leg3L_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg3L_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3L_hip_femur" type="fixed">
+    	<parent link="leg3L_hip_joint"/>
+    	<child link="leg3L_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3L_femur_uknee" type="fixed">
+    	<parent link="leg3L_femur"/>
+    	<child link="leg3L_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3L_uknee_lknee" type="revolute">
+    	<parent link="leg3L_uknee"/>
+    	<child link="leg3L_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg3L_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg3L_lknee_tibia" type="fixed">
+    	<parent link="leg3L_lknee"/>
+    	<child link="leg3L_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3L_tibia_ankle" type="fixed">
+    	<parent link="leg3L_tibia"/>
+    	<child link="leg3L_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg3L_ankle_foot" type="fixed">
+    	<parent link="leg3L_ankle"/>
+    	<child link="leg3L_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+  <link name="leg4L_base_link">
+    <inertial>
+      <mass value="0.115"/>
+<!--			kg-->
+      <inertia  ixx="7.183E-05" ixy="-8.663E-06"  ixz="-5.347E-08"  iyy="3.775E-05"  iyz="1.961E-08"  izz="8.613E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
+      <geometry>
+      	<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_inner.stl" scale="0.001 0.001 0.001"/>
+
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="0.06 0.06 0.08"/>
+      </geometry>
+    </collision>
+
+  </link>
+<!-- *************************************************************************************** -->
+
+
+
+  	<link name="leg4L_hip">
+		<visual>
+		    <origin xyz="0.029 -0.0085 0.008" rpy="-1.5707963 0 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_joint_outer.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.03 -0.007 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.08 0.055 0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.124"/>
+<!--			kg-->
+		   <inertia  ixx="0" ixy="-3.490E-06"  ixz="2.451E-06"  iyy="7.346E-05"  iyz="1.702E-05"  izz="7.841E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_hip_joint">
+		<visual>
+		    <origin xyz="0.01448 0 -0.000" rpy="3.145968 0 3.145968"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.017 0.003 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_femur">
+		<visual>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_sleeve_50.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="-0.003 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.050 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.008"/>
+<!--			kg-->
+		    <inertia  ixx="4.725E-07" ixy="0.0"  ixz="0.0"  iyy="1.902E-06"  iyz="0.0"  izz="1.902E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_uknee">
+		<visual>
+		    <origin xyz="-0.005 -0.0005 0" rpy="0 -1.5707963 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/servo_holder_knee.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.055 0.05 0.04"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.084"/>
+<!--			kg-->
+		    <inertia  ixx="3.616E-05" ixy="-1.948E-07"  ixz="1.827E-07"  iyy="1.935E-05"  iyz="2.456E-06"  izz="2.537E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_lknee">
+		<visual>
+		    <origin xyz="0.014 -0.005 0" rpy="3.145968 3.145968 0"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/hip_servo_side.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.013 0 0" rpy="0 1.5707963 1.5707963"/>
+			<geometry>
+				<cylinder length="0.08" radius="0.03"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.025"/>
+<!--			kg-->
+		    <inertia  ixx="1.501E-05" ixy="-5.971E-08"  ixz="2.265E-10"  iyy="8.703E-06"  iyz="1.128E-10"  izz="2.178E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_tibia">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/leg_piece_lower.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.02 0.02"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.016"/>
+<!--			kg-->
+		    <inertia  ixx="1.311E-05" ixy="2.532E-08"  ixz="0.0"  iyy="7.066E-07"  iyz="0.0"  izz="1.311E-05" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_ankle">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.5707963 1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/new_foot.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision>
+		    <origin xyz="0.006 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<box size="0.05 0.028 0.022"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="0.012"/>
+<!--			kg-->
+		    <inertia  ixx="2.148E-06" ixy="-2.295E-08"  ixz="-8.572E-10"  iyy="1.296E-06"  iyz="-8.627E-09"  izz="2.571E-06" />
+		</inertial>
+	</link>
+
+<!-- *************************************************************************************** -->
+
+	<link name="leg4L_foot">
+		<visual>
+		    <origin xyz="0.0145 0 0" rpy="0 0 -1.5707963"/>
+			<geometry>
+				<mesh filename="package://steve_description/urdf/urdf_meshes/FOOT_PART2.stl" scale="0.001 0.001 0.001"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+		</visual>
+		<collision name="leg4L_foot_collision">
+		    <origin xyz="0.0145 0 0" rpy="-1.5707963 0 0"/>
+			<geometry>
+				<cylinder length="0.025" radius="0.0155"/>
+<!--				the length includes the length of the screw-->
+			</geometry>
+			<gazebo>
+	  		<surface>
+			<friction>
+			  <ode>
+			    <mu>50</mu>
+			    <mu2>50</mu2>
+			    <fdir1>1 1 1</fdir1>
+			    <slip1>0</slip1>
+			    <slip2>0</slip2>
+			  </ode>
+			</friction>
+			<bounce>
+			  <restitution_coefficient>0.0</restitution_coefficient>
+			  <threshold>100000.0</threshold>
+			</bounce>
+			<contact>
+			  <ode>
+			    <soft_cfm>0.0</soft_cfm>
+			    <soft_erp>0.2</soft_erp>
+			    <kp>100000.0</kp>
+			    <kd>1.0</kd>
+			    <max_vel>100.0</max_vel>
+			    <min_depth>0.001</min_depth>
+			  </ode>
+			</contact>
+		      </surface>
+		      <laser_retro>0</laser_retro>
+		</gazebo>
+		</collision>
+		<inertial>
+			<mass value="0.02"/>
+<!--			kg-->
+		    <inertia  ixx="2.945E-06" ixy="0.0"  ixz="0.0"  iyy="1.835E-06"  iyz="0.0"  izz="2.345E-06" />
+		</inertial>
+	</link>
+
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<!--
+  <joint name="base_link_to_leg4L" type="fixed">
+    <parent link="base_link"/>
+    <child link="leg4L"/>
+  </joint> -->
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4L_base_link_fixed_hip2" type="revolute">
+    <parent link="leg4L_base_link"/>
+    <child link="leg4L_hip"/>
+    <origin xyz="0.016 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.3962634" upper="1.3962634" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg4L_base_link_fixed_hip2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4L_hip2_hipjoint" type="revolute">
+    	<parent link="leg4L_hip"/>
+    	<child link="leg4L_hip_joint"/>
+    	<origin xyz="0.053 -0.002 0.009" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.74532925" upper="0.8" effort="3.9" velocity="6.9"/>
+  </joint>
+
+  <transmission name="v_hip_swivel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="$v_hip_swivel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="leg4L_hip2_hipjoint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4L_hip_femur" type="fixed">
+    	<parent link="leg4L_hip_joint"/>
+    	<child link="leg4L_femur"/>
+    	<origin xyz="0.066 0.0065 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4L_femur_uknee" type="fixed">
+    	<parent link="leg4L_femur"/>
+    	<child link="leg4L_uknee"/>
+    	<origin xyz="0.049 -0.001 0.005" rpy="0 0 0"/>
+<!--		1.1175-->
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4L_uknee_lknee" type="revolute">
+    	<parent link="leg4L_uknee"/>
+    	<child link="leg4L_lknee"/>
+    	<origin xyz="0.010 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.22173048" upper="1.74532925" effort="3.9" velocity="6.9"/>
+	</joint>
+
+	  <transmission name="knee_swivel_trans">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <actuator name="$knee_swivel_motor">
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	    <joint name="leg4L_uknee_lknee">
+	      <hardwareInterface>PositionJointInterface</hardwareInterface>
+	    </joint>
+	  </transmission>
+
+
+
+
+<!-- *************************************************************************************** -->
+
+  <joint name="leg4L_lknee_tibia" type="fixed">
+    	<parent link="leg4L_lknee"/>
+    	<child link="leg4L_tibia"/>
+    	<origin xyz="0.087 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4L_tibia_ankle" type="fixed">
+    	<parent link="leg4L_tibia"/>
+    	<child link="leg4L_ankle"/>
+    	<origin xyz="0.0685 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- *************************************************************************************** -->
+
+	<joint name="leg4L_ankle_foot" type="fixed">
+    	<parent link="leg4L_ankle"/>
+    	<child link="leg4L_foot"/>
+    	<origin xyz="00.015 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- =================================================================================================== -->
+<!-- =================================================================================================== -->
+
+
+<link name="base">
+	<visual>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://steve_description/urdf/urdf_meshes/base.stl" scale="0.001 0.001 0.001"/>
+		</geometry>
+	</visual>
+	<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<mesh filename="package://steve_description/urdf/urdf_meshes/base.stl" scale="0.001 0.001 0.001"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<mass value="0.5"/>
+
+	   <inertia  ixx="0.003" ixy="-1.570E-07"  ixz="3.039E-08"  iyy="0.004"  iyz="1.404E-08"  izz="0.007" />
+	</inertial>
+</link>
+
+<link name="others">
+	<visual>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<box size="0.1 0.1 0.1"/>
+		</geometry>
+	</visual>
+	<collision>
+	    <origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+			<box size="0.1 0.1 0.1"/>
+		</geometry>
+	</collision>
+	<inertial>
+		<mass value="0.5"/>
+
+	    <inertia  ixx="1" ixy="0.0"  ixz="0.0"  iyy="1"  iyz="0.0"  izz="1" />
+	</inertial>
+</link>
+
+<joint name="circuit_link" type="fixed">
+	<parent link="base"/>
+	<child link="others"/>
+	<origin xyz="0 0 0.06" rpy="0 0 0"/>
+</joint>
+
+<joint name="box_link_1R" type="fixed">
+	<parent link="base"/>
+	<child link="leg1R_base_link"/>
+	<origin xyz="-0.070 -0.115 0.042" rpy="0 0 -2.26893"/>
+</joint>
+
+
+<joint name="box_link_2R" type="fixed">
+	<parent link="base"/>
+	<child link="leg2R_base_link"/>
+	<origin xyz="-0.14 -0.055 0.042" rpy="0 0 -2.79253"/>
+</joint>
+
+<joint name="box_link_3R" type="fixed">
+	<parent link="base"/>
+	<child link="leg3R_base_link"/>
+	<origin xyz="-0.14 0.055 0.042" rpy="0 0 2.79253"/>
+</joint>
+
+<joint name="box_link_4R" type="fixed">
+	<parent link="base"/>
+	<child link="leg4R_base_link"/>
+	<origin xyz="-0.070 0.115 0.042" rpy="0 0 2.26893"/>
+</joint>
+
+
+
+<joint name="box_link_1L" type="fixed">
+	<parent link="base"/>
+	<child link="leg1L_base_link"/>
+	<origin xyz="0.070 -0.115 0.042" rpy="0 0 -0.872665"/>
+</joint>
+
+
+<joint name="box_link_2L" type="fixed">
+	<parent link="base"/>
+	<child link="leg2L_base_link"/>
+	<origin xyz="0.14 -0.055 0.042" rpy="0 0 -0.349066"/>
+</joint>
+
+<joint name="box_link_3L" type="fixed">
+	<parent link="base"/>
+	<child link="leg3L_base_link"/>
+	<origin xyz="0.14 0.055 0.042" rpy="0 0 0.349066"/>
+</joint>
+
+<joint name="box_link_4L" type="fixed">
+	<parent link="base"/>
+	<child link="leg4L_base_link"/>
+	<origin xyz="0.070 0.115 0.042" rpy="0 0 0.872665"/>
+</joint>
+
+
+  <gazebo>
+    <self_collide>True</self_collide>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+
+</robot>
